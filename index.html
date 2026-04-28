@@ -41,7 +41,6 @@ h1{
     font-size:48px;
 }
 
-/* CARD */
 .card{
     background:rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
@@ -61,7 +60,7 @@ h1{
 }
 
 button{
-    width:220px;
+    width:240px;
     padding:14px 18px;
     border:none;
     border-radius:25px;
@@ -77,8 +76,8 @@ button:hover{
     background:#ff2f56;
 }
 
-/* COMPLIMENT */
-#compliment{
+/* MESSAGE */
+#message{
     margin-top:20px;
     font-size:22px;
     opacity:0;
@@ -86,7 +85,7 @@ button:hover{
     transition:0.4s;
 }
 
-#compliment.show{
+#message.show{
     opacity:1;
     transform:scale(1.1);
 }
@@ -130,7 +129,6 @@ button:hover{
     font-size:44px;
 }
 
-/* CLOSE */
 .close-x{
     position:absolute;
     top:20px;
@@ -150,7 +148,7 @@ button:hover{
 
 <body>
 
-<!-- 🎵 LOCAL MUSIC -->
+<!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -165,12 +163,12 @@ button:hover{
 
 <div class="button-row">
     <button onclick="sendLove()">Жүрек ❤️</button>
-    <button onclick="compliment()">Комплимент ✨</button>
     <button onclick="hug()">Обнимашки 🤗</button>
-    <button onclick="showSecret()">🔐 Құпия хабарлама</button>
+    <button onclick="compliment()">Комплимент ✨</button>
+    <button onclick="showSecret()">🔐 Құпия</button>
 </div>
 
-<p id="compliment"></p>
+<p id="message"></p>
 
 </div>
 </div>
@@ -243,9 +241,13 @@ function sendLove(){
     }
 }
 
-/* hug */
+/* 💬 HUG MESSAGE */
 function hug(){
-    alert("Напиши мне: хочу Обнимашки!🤗");
+    let el=document.getElementById("message");
+    el.innerText="Напиши мне: хочу Обнимашки!🤗";
+    el.classList.remove("show");
+    void el.offsetWidth;
+    el.classList.add("show");
 }
 
 /* compliment */
@@ -258,7 +260,7 @@ const compliments=[
 ];
 
 function compliment(){
-    let el=document.getElementById("compliment");
+    let el=document.getElementById("message");
     el.innerText=compliments[Math.floor(Math.random()*compliments.length)];
     el.classList.remove("show");
     void el.offsetWidth;
